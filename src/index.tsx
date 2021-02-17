@@ -1,14 +1,13 @@
 import React from 'react';
 import './index.css';
-import store from "./redux/state";
+import store from "./redux/store";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from './reportWebVitals';
 
 let rerenderEntireTree = () => {
     ReactDOM.render(<App state={store.getState()}
-                         addPost={store.addPost.bind(store)}
-                         changeNewText={store.changeNewText.bind(store)}
+                         dispatch={store.dispatch.bind(store)}
     />, document.getElementById('root'));
 }
 

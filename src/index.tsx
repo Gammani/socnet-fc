@@ -3,18 +3,24 @@ import './index.css';
 import store from "./redux/store";
 import ReactDOM from "react-dom";
 import App from "./App";
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from "./reportWebVitals";
 
-let rerenderEntireTree = () => {
+let _callSubscriber = () => {
     ReactDOM.render(<App state={store.getState()}
                          dispatch={store.dispatch.bind(store)}
+                         store={store}
+
     />, document.getElementById('root'));
 }
 
-store.subscribe(rerenderEntireTree);
-store._rerenderEntireTree();
+store.subscribe(_callSubscriber);
+_callSubscriber();
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+
+// store.subscribe(rerenderEntireTree);
+// store._rerenderEntireTree();
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
 reportWebVitals();
